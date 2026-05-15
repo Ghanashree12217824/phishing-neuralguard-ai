@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Phishing Detection System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="background-effects">
+        <canvas id="particle-canvas"></canvas>
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+        <div class="grid-overlay"></div>
+    </div>
+
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fa-solid fa-shield-halved neon-icon"></i>
+                <h1>Neural<span class="highlight">Guard</span></h1>
+            </div>
+            <p class="subtitle">AI-Powered Phishing Threat Intelligence</p>
+        </header>
+
+        <main>
+            <div class="search-container glass-panel">
+                <form id="analyze-form">
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-link input-icon"></i>
+                        <input type="text" id="url-input" placeholder="Enter URL to analyze (e.g., https://example.com)" autocomplete="off">
+                        <button type="submit" id="analyze-btn">
+                            <span class="btn-text">Analyze</span>
+                            <i class="fa-solid fa-crosshairs"></i>
+                        </button>
+                    </div>
+                </form>
+                <div id="loading" class="hidden">
+                    <div class="cyber-scanner-container">
+                        <div class="cyber-scanner"></div>
+                        <div class="laser-beam"></div>
+                    </div>
+                    <div class="terminal-loader">
+                        <span class="terminal-prompt">></span>
+                        <span id="typing-text">Initializing neural network...</span><span class="cursor">_</span>
+                    </div>
+                    <div class="matrix-code" id="matrix-code"></div>
+                </div>
+            </div>
+
+            <div id="error-message" class="error-panel hidden"></div>
+
+            <div id="results-container" class="results-layout hidden">
+                <div class="main-result glass-panel">
+                    <div class="status-header">
+                        <h2 id="threat-status">Status</h2>
+                        <div class="confidence-badge" id="confidence-badge">--%</div>
+                    </div>
+                    
+                    <div class="gauge-container">
+                        <svg viewBox="0 0 100 50" class="gauge">
+                            <path class="gauge-bg" d="M 10,50 A 40,40 0 0,1 90,50" />
+                            <path class="gauge-fill" id="gauge-fill" d="M 10,50 A 40,40 0 0,1 90,50" stroke-dasharray="125.6" stroke-dashoffset="125.6" />
+                        </svg>
+                        <div class="gauge-value" id="gauge-value">--%</div>
+                        <div class="gauge-label">Threat Probability</div>
+                    </div>
+
+                    <div class="url-display">
+                        <h3>Target URL</h3>
+                        <code id="display-url"></code>
+                    </div>
+
+                    <div class="action-recommendation" id="action-rec">
+                        <!-- Action recommendations injected here -->
+                    </div>
+                </div>
+
+                <div class="insights-panel glass-panel">
+                    <div class="panel-header">
+                        <h2><i class="fa-solid fa-brain"></i> Neural Insights</h2>
+                        <button id="explain-btn" class="secondary-btn">Explain Prediction</button>
+                    </div>
+                    
+                    <div id="explain-loading" class="hidden">
+                        <i class="fa-solid fa-circle-notch fa-spin"></i> Generating explainable AI report...
+                    </div>
+
+                    <div id="shap-results" class="hidden">
+                        <div class="factors-grid">
+                            <div class="risk-factors">
+                                <h3><i class="fa-solid fa-triangle-exclamation text-danger"></i> Risk Factors</h3>
+                                <ul id="risk-list" class="factor-list"></ul>
+                            </div>
+                            <div class="safe-factors">
+                                <h3><i class="fa-solid fa-shield-check text-success"></i> Safe Signals</h3>
+                                <ul id="safe-list" class="factor-list"></ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="explain-empty" class="explain-placeholder">
+                        <p>Click "Explain Prediction" to see the driving factors behind the AI's decision.</p>
+                    </div>
+                </div>
+                
+                <div class="sandbox-panel glass-panel">
+                    <div class="panel-header">
+                        <h2><i class="fa-solid fa-camera"></i> Safe-View Sandbox</h2>
+                    </div>
+                    <div class="sandbox-container" id="sandbox-container">
+                        <div class="sandbox-loading" id="sandbox-loading">
+                            <i class="fa-solid fa-satellite-dish fa-beat"></i> Capturing remote snapshot...
+                        </div>
+                        <img id="sandbox-image" class="hidden" alt="Live Website Snapshot" />
+                    </div>
+                </div>
+
+                <div class="intel-panel glass-panel">
+                    <div class="panel-header">
+                        <h2><i class="fa-solid fa-network-wired"></i> Server Intelligence</h2>
+                    </div>
+                    <div id="intel-loading" class="intel-loading">
+                        <i class="fa-solid fa-microchip fa-spin"></i> Querying global databases...
+                    </div>
+                    <div id="intel-results" class="intel-grid hidden">
+                        <div class="intel-item">
+                            <span class="intel-label">IP Address</span>
+                            <span class="intel-value" id="intel-ip">--</span>
+                        </div>
+                        <div class="intel-item">
+                            <span class="intel-label">Location</span>
+                            <span class="intel-value" id="intel-loc">--</span>
+                        </div>
+                        <div class="intel-item">
+                            <span class="intel-label">ISP / Host</span>
+                            <span class="intel-value" id="intel-isp">--</span>
+                        </div>
+                        <div class="intel-item">
+                            <span class="intel-label">Domain Age</span>
+                            <span class="intel-value" id="intel-age">--</span>
+                        </div>
+                        <div class="intel-item">
+                            <span class="intel-label">SSL Certificate</span>
+                            <span class="intel-value" id="intel-ssl">--</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="history-panel glass-panel hidden" id="history-panel">
+                <h2><i class="fa-solid fa-clock-rotate-left"></i> Recent Analysis</h2>
+                <ul id="history-list" class="history-list"></ul>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

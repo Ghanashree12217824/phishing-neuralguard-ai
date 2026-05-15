@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+pydantic
+numpy
+scikit-learn
+python-whois
+tldextract
+requests
+shap

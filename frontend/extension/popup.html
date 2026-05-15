@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NeuralGuard Status</title>
+    <link rel="stylesheet" href="popup.css">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="header">
+        <i class="fa-solid fa-shield-halved logo-icon"></i>
+        <h2>NeuralGuard AI</h2>
+    </div>
+
+    <div class="content">
+        <p class="label">Current Website:</p>
+        <div id="current-url" class="url-display">Loading...</div>
+        
+        <div id="status-card" class="status-card loading">
+            <i class="fa-solid fa-circle-notch fa-spin status-icon"></i>
+            <h3 id="status-text">Analyzing...</h3>
+        </div>
+        
+        <p class="subtext" id="status-subtext">Waiting for AI engine response.</p>
+    </div>
+
+    <div class="footer">
+        <a href="http://localhost:5500" target="_blank">Open Full Dashboard <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>

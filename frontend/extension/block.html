@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warning: Suspected Phishing</title>
+    <style>
+        body {
+            background-color: #d93025;
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            text-align: left;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .icon {
+            font-size: 3rem;
+        }
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        #blocked-url {
+            font-family: monospace;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px;
+            border-radius: 6px;
+            word-break: break-all;
+            display: inline-block;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .btn-container {
+            display: flex;
+            gap: 15px;
+            margin-top: 40px;
+        }
+        button {
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-primary {
+            background: white;
+            color: #d93025;
+        }
+        .btn-primary:hover {
+            background: #f1f3f4;
+            transform: scale(1.05);
+        }
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1><span class="icon">⚠️</span> Dangerous Site Blocked</h1>
+        
+        <p><strong>NeuralGuard AI</strong> has intercepted your connection and prevented you from visiting a known or suspected phishing website.</p>
+        
+        <p>Attackers on this site might try to trick you into downloading software or revealing sensitive information (for example, passwords, messages, or credit cards).</p>
+        
+        <div id="blocked-url">Loading...</div>
+        
+        <div class="btn-container">
+            <button class="btn-primary" id="btn-back">Back to Safety</button>
+            <button class="btn-secondary" id="btn-continue">Proceed Anyway (Unsafe)</button>
+        </div>
+    </div>
+
+    <script src="block.js"></script>
+</body>
+</html>
